@@ -1,38 +1,51 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Amiko:wght@600&display=swap%27');
+
+.basic {
+    color: #05431A;
+    font-family: 'Amiko', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    background-color: #B1E6B9;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.backg {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cn1 {
+    background-color: black;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: auto;
+    align-self: stretch;
 }
 
-.App-link {
-  color: #61dafb;
+
+.cn2 {
+    background-color: azure;
+    display: flex;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cn3 {
+    background-color: antiquewhite;
+    padding-top: 1em;
+    display: flex;
+    order: 0;
+    flex: 0 1 auto;
+    align-self: center;
+}
+
+.cn4 {
+    background-color: #05431A;
+    display: flex;
+    order: 0;
+    flex: 0 1 auto;
 }
