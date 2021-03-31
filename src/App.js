@@ -11,13 +11,14 @@ import PieChart, {
   Export,
   Legend,
   AdaptiveLayout,
-  Tooltip,
-  SeriesBorder
+  Tooltip
 } from 'devextreme-react/ui/pie-chart';
-
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 function a11yProps(index) {
   return {
     id: `action-tab-${index}`,
@@ -137,7 +138,67 @@ function FloatingActionButtonZoom() {
   );
 }
 
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
+const tutorialSteps = [
+  {
+    label: '“Be yourself; everyone else is already taken.”'},
+  {
+    label: 'Im selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you cant handle me at my worst, then you sure as hell dont deserve me at my best'},
+  {
+    label: 'Two things are infinite: the universe and human stupidity and Im not sure about the universe.'
+  },
+  {
+    label: 'So many books, so little time'
+  },
+];
+
+const carousel_text = makeStyles((theme) => ({
+  root: {
+    maxWidth: 400,
+    flexGrow: 1,
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    height: 90,
+    // paddingLeft: theme.spacing(4),
+    // backgroundColor: theme.palette.background.default,
+    backgroundColor: '#B1E6B9'
+  }
+}));
+
+function CarouselText(){
+  const classes = carousel_text();
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
+  return(
+    <div className={classes.root}>
+    <Paper square elevation={0} className={classes.header}>
+      <Typography>{tutorialSteps[activeStep].label}</Typography>
+    </Paper>
+    <AutoPlaySwipeableViews
+      axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+      index={activeStep}
+      onChangeIndex={handleStepChange}
+      enableMouseEvents
+    >
+      {tutorialSteps.map((step, index) => (
+        <div>
+          {Math.abs(activeStep - index) <= 2 ? (
+            <div key={step.label} />
+          ) : null}
+        </div>
+      ))}
+    </AutoPlaySwipeableViews>
+
+  </div>
+);
+}
 
 function App() {
 
@@ -223,7 +284,7 @@ const classes = pie_chart();
       </div>
 
       <div className="cn4">
-        are
+       <CarouselText />
       </div>
       
       <div className="cn5">
