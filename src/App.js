@@ -19,6 +19,12 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import CropFreeIcon from '@material-ui/icons/CropFree';
+import HomeIcon from '@material-ui/icons/Home';
+
+
 function a11yProps(index) {
   return {
     id: `action-tab-${index}`,
@@ -30,14 +36,13 @@ const StyledTabs = withStyles({
     root: {
     borderRadius: 25,
     color: "white",
-    boxShadow: "0 3px 5px 2px black",
  }
 })(Tabs);
 
 const tab_slider = makeStyles(() => ({
   root: {
     backgroundColor: 'rgb(121,161,114)',
-    width: 375,
+    width: '95%',
     borderRadius: 25,
   }
 }));
@@ -155,16 +160,17 @@ const tutorialSteps = [
 
 const carousel_text = makeStyles((theme) => ({
   root: {
-    maxWidth: 400,
-    flexGrow: 1,
+    display: 'flex',
+    // maxWidth: '94%',
+
   },
   header: {
+    flex: 1,
+    justifyContent: 'center',
     display: 'flex',
     alignItems: 'center',
-    height: 90,
-    // paddingLeft: theme.spacing(4),
-    // backgroundColor: theme.palette.background.default,
-    backgroundColor: '#B1E6B9'
+    backgroundColor: '#B1E6B9',
+    textAlign: 'center',
   }
 }));
 
@@ -200,6 +206,32 @@ function CarouselText(){
 );
 }
 
+const bottom = makeStyles({
+  root: {
+    width: '95%',
+    backgroundColor: '#CCF5D2',
+    borderRadius: 40
+  },
+});
+
+function LabelBottomNavigation() {
+  const classes = bottom();
+  const [value, setValue] = React.useState('recents');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+      <BottomNavigationAction label="Switch" value="switch" icon={<CropFreeIcon />} />
+      <BottomNavigationAction label="Scan" value="scan" icon={<CropFreeIcon />} />
+      <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} />
+    </BottomNavigation>
+  );
+}
+
+
 function App() {
 
 // pointClickHandler = pointClickHandler.bind(this);
@@ -226,7 +258,8 @@ var customizeTooltip = function(pointInfo) {
   
 const classes = pie_chart();
 
-  return (    
+  return ( 
+     
     <div className="backg basic">
        
        <div className="cn1">
@@ -235,6 +268,7 @@ const classes = pie_chart();
       <Avatar className={classes.purple}>OP</Avatar>
       </div>
      </div>
+      
       
       <div className="cn2">
        <PieChart
@@ -261,7 +295,7 @@ const classes = pie_chart();
         </Series>
    
 
-        <Size width={400} />
+        <Size width={300} />
         <Export enabled={false} />
         <Legend 
         orientation="vertical"
@@ -286,11 +320,15 @@ const classes = pie_chart();
       <div className="cn4">
        <CarouselText />
       </div>
-      
+
       <div className="cn5">
-        four
+        hello
       </div>
-    </div>
+      
+      <div className="cn6">
+      <LabelBottomNavigation />
+      </div>
+      </div>
   )
 }
   export default App;
