@@ -4,15 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import FloatingActionButtonZoom from './Text'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route , BrowserRouter, Switch, useLocation } from "react-router-dom";
 import Text from './Text'
 
-ReactDOM.render((
- <Router>
-    {/* <Route path="/" component={App} /> */}
-    <Route path="/" component={App} />
-  </Router>
-), document.getElementById('root'));
+ReactDOM.render(
+  <Router>
+      <Switch >
+        <Route path = {"/"} component = {App}/>
+      </Switch>
+  </Router>,
+  document.getElementById('root')
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
