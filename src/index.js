@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import FloatingActionButtonZoom from './Text'
 import { BrowserRouter as Router, Route , BrowserRouter, Switch, useLocation } from "react-router-dom";
-import Text from './Text'
 
 ReactDOM.render(
   <Router>
