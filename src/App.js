@@ -7,23 +7,36 @@ import Tabsbutton from './components/Tabs';
 import Header from './components/Header'
 import * as fetch from './backend/fetch.js'
 
+
+
 function App() {
 
-useEffect(() => {
-  fetch.getTrashId()   
-})
+  var [load, setLoad] = React.useState(false)
+
+  useEffect(()=>{
+    
+    async function abd() {
+      await fetch.getTrashId()
+      setLoad(true)
+    }
+    abd()
+  }, [])
 
   return ( 
-     
+    
     <div className="backg basic">
+  
     <Header />
-    <Piechart /> 
+    {/* {load===false? " " : 
+    <Piechart loading={load} /> 
+  } */}
     <Tabsbutton />     
     <Carouseltext />
 <div className="cn5">
-    hello
+    {/* <button onClick={()=>{on()}}>hello</button> */}hello
     </div>
     <Footer />
+ 
     </div>
   )
 }
