@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../App.css';
 import PieChart, {
   Series,
@@ -11,24 +11,61 @@ import PieChart, {
   Tooltip
 } from 'devextreme-react/ui/pie-chart';
 
-  
-  const areas = [{
-    country: 'Plastic',  area: 60},
-     {
-    country: 'Metal',  area: 10},  
-     {
-    country: 'Glass',  area: 10},
-     {
-    country: 'Bio',  area: 10},
-     {
-    country: 'Paper',  area: 9},
-     {
-    country: 'Other',  area: 1}
-  ];
 
 function Piechart() {
-  
 
+console.log("called second")
+  const [data, setData] = React.useState([])
+  useEffect(()=>{
+
+    console.log("second"+ localStorage.getItem("id"))
+    var id = localStorage.getItem("id")
+    var searchParams = new URLSearchParams();
+    searchParams.append("id", id);
+    var header = new Headers()
+    header.append("Content-Type", "application/x-www-form-urlencoded")
+  
+    const req = {
+  
+      method: 'POST',
+      header: header,
+      body: searchParams
+    }
+    
+    var temp = [];
+   
+    fetch('https://helpsws.herokuapp.com/id', req)
+    .then(res => res.json())
+    .then(result => {
+      
+      console.log(result)
+      const plastic = result.plasticCount;
+      const metal = result.metalCount;
+      const bio = result.bioCount;
+      const glass = result.glassCount;
+      const paper = result.paperCount;
+  
+      const areas = [{
+        country: 'Plastic',  area: plastic},
+         {
+        country: 'Metal',  area: metal},  
+         {
+        country: 'Glass',  area: glass},
+         {
+        country: 'Bio',  area: bio},
+         {
+        country: 'Paper',  area: paper},
+      ];
+    
+      for(var i=0; i<areas.length; i++)
+   {
+      temp.push(areas[i])
+    
+          }
+          setData(temp)
+    })
+  }, [])
+ 
 var pointClickHandler = function(e) {
     toggleVisibility(e.target);
   }
@@ -52,7 +89,8 @@ var pointClickHandler = function(e) {
   return(
     <div className="cn2">
 <PieChart
-        dataSource={areas}
+        index={0}
+        dataSource={data}
         // palette="bright"
         onPointClick={pointClickHandler}
         onLegendClick={legendClickHandler}
