@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../App.css';
 import PieChart, {
   Series,
@@ -11,61 +11,8 @@ import PieChart, {
   Tooltip
 } from 'devextreme-react/ui/pie-chart';
 
-
-function Piechart() {
-
-console.log("called second")
-  const [data, setData] = React.useState([])
-  useEffect(()=>{
-
-    console.log("second"+ localStorage.getItem("id"))
-    var id = localStorage.getItem("id")
-    var searchParams = new URLSearchParams();
-    searchParams.append("id", id);
-    var header = new Headers()
-    header.append("Content-Type", "application/x-www-form-urlencoded")
-  
-    const req = {
-  
-      method: 'POST',
-      header: header,
-      body: searchParams
-    }
-    
-    var temp = [];
-   
-    fetch('https://helpsws.herokuapp.com/id', req)
-    .then(res => res.json())
-    .then(result => {
-      
-      console.log(result)
-      const plastic = result.plasticCount;
-      const metal = result.metalCount;
-      const bio = result.bioCount;
-      const glass = result.glassCount;
-      const paper = result.paperCount;
-  
-      const areas = [{
-        country: 'Plastic',  area: plastic},
-         {
-        country: 'Metal',  area: metal},  
-         {
-        country: 'Glass',  area: glass},
-         {
-        country: 'Bio',  area: bio},
-         {
-        country: 'Paper',  area: paper},
-      ];
-    
-      for(var i=0; i<areas.length; i++)
-   {
-      temp.push(areas[i])
-    
-          }
-          setData(temp)
-    })
-  }, [])
- 
+function Piechart(props){
+ console.log(props.area)
 var pointClickHandler = function(e) {
     toggleVisibility(e.target);
   }
@@ -84,14 +31,17 @@ var pointClickHandler = function(e) {
   var customizeTooltip = function(pointInfo) {
     return pointInfo.value > 50 ? { color: 'red' } : { }; 
   }
-    
+  
+  function formatTxt(arg){
+    return `${arg.argumentText} (${arg.percentText})`;
+  }
  
   return(
     <div className="cn2">
 <PieChart
         index={0}
-        dataSource={data}
-        // palette="bright"
+        dataSource={props.area}
+        palette={['	#D3D3D3', '	#F0F0F0', '	#E8E8E8', '#E0E0E0', '#DCDCDC', '#D8D8D8' ]}
         onPointClick={pointClickHandler}
         onLegendClick={legendClickHandler}
       >
@@ -105,11 +55,14 @@ var pointClickHandler = function(e) {
           argumentField="country"
           valueField="area"
       >
-          <Label 
-          position="outside"
-          visible={true}>
-            <Connector visible={true} width={0.3} />
-          </Label>
+          <Label
+          position="inside"
+          backgroundColor="transparent"
+          visible={true}
+          customizeText={formatTxt}
+          >
+           <Connector visible={true} width={0.3} />
+           </Label>
         </Series>
    
 
@@ -124,11 +77,12 @@ var pointClickHandler = function(e) {
         columnItemSpacing={10}
         rowItemSpacing={10}
         />
-          <AdaptiveLayout
+        <AdaptiveLayout
                     height={200}
                     width={300}
-                />
+          />
       </PieChart>   
       </div>
     )};   
+
     export default Piechart;

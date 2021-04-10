@@ -4,7 +4,6 @@ import { makeStyles, withStyles, useTheme  } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import SwipeableViews from 'react-swipeable-views';
-import { TabPanel } from 'devextreme-react';
 import Piechart from './Piechart';
 import Storage from './Storage';
 import Composition from './Composition';
@@ -33,10 +32,8 @@ const tab_slider = makeStyles(() => ({
   }
 }));
 
-function Tabsbutton(){
 
-  
-
+function Tabsbutton(props){
 
 const classes = tab_slider();
   const theme = useTheme();
@@ -49,20 +46,20 @@ const classes = tab_slider();
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-//   const transitionDuration = {
-//     enter: theme.transitions.duration.enteringScreen,
-//     exit: theme.transitions.duration.leavingScreen,
-//   };
+ 
 
   return (
-    <div>
-      <div className="cn2">
+    <div className="cn3">
+      <div className="tn1">
+        
       <SwipeableViews
         index={value}
+        value={value}
         onChangeIndex={handleChangeIndex}
       >
   
         <Piechart
+        area={props.pieData}
         index={0}
         value={value}
         dir={theme.direction}
@@ -70,16 +67,10 @@ const classes = tab_slider();
  
         <Storage />
         <Composition />
-         <TabPanel value={value} index={1} dir={theme.direction}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
       </SwipeableViews>
       </div>
 
-      <div className="cn3">
+      <div className="tn2">
         <div className={classes.root}>
      
         <StyledTabs

@@ -5,7 +5,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import HomeIcon from '@material-ui/icons/Home';
-
+import { useHistory } from "react-router-dom";
 
 
 const bottom = makeStyles({
@@ -19,6 +19,7 @@ const bottom = makeStyles({
   
 function Footer(){
 
+const history = useHistory();
 const classes = bottom();
 const [value, setValue] = React.useState('recents');
 
@@ -30,7 +31,7 @@ return (
   <div className="cn6">
   <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
     <BottomNavigationAction label="Switch" value="switch" icon={<CropFreeIcon />} />
-    <BottomNavigationAction label="Scan" value="scan" icon={<CropFreeIcon />} />
+    <BottomNavigationAction label="Scan" onClick={() => history.push("/Camera")} value="scan" icon={<CropFreeIcon />} />
     <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} />
   </BottomNavigation>
   </div>

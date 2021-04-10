@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route , BrowserRouter, Switch, useLocation } from "react-router-dom";
+import Camera from './components/Camera';
 
 ReactDOM.render(
-  <Router>
+  <Router history={BrowserRouter}>
       <Switch >
-        <Route path = {"/"} component = {App}/>
+        <Route path = {"/"} exact component = {App}/>
+        <Route path = {"/Camera"} exact  component = {Camera}/>
       </Switch>
   </Router>,
   document.getElementById('root')

@@ -28,11 +28,10 @@
 .cn1 {
     /* background-color: black; */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    width: 100%;
-    margin-top: 1em;
-    align-self: stretch;
+    width: 95%;
+    margin-top: 1em;    
 }
 
 
@@ -50,13 +49,11 @@
     /* background-color: antiquewhite; */
     display: flex;
     order: 0;
+    flex-direction: column;
     flex: 0 1 auto;
     width: 100%;
-    align-items: center;
-    align-self: center;
-    text-align: center;
     justify-content: center;
-    padding-top: 1em;
+    /* padding-top: 1em; */
 }
 
 .cn4 {
@@ -66,7 +63,7 @@
     padding-top: 1em;
     justify-content: center;
     align-items: center;
-    height: 150px;
+    height: 125px;
     width: 100%;
    
 }
@@ -88,3 +85,22 @@
     
 }
 
+.tn1{
+    /* background-color: cadetblue; */
+    margin-bottom: 1em;
+}
+.tn2{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.camera {
+    
+    height: 100%;
+    width: 100%;
+    margin-top: 35%;
+
+}
