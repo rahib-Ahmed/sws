@@ -8,7 +8,6 @@ import Piechart from './Piechart';
 import Storage from './Storage';
 import Composition from './Composition';
 
-
 function a11yProps(index) {
   
     return {
@@ -47,8 +46,7 @@ const classes = tab_slider();
     setValue(index);
   };
  
-
-  return (
+   return (
     <div className="cn3">
       <div className="tn1">
         
@@ -57,16 +55,27 @@ const classes = tab_slider();
         value={value}
         onChangeIndex={handleChangeIndex}
       >
-  
+        
         <Piechart
         area={props.pieData}
         index={0}
         value={value}
         dir={theme.direction}
         />
- 
-        <Storage />
-        <Composition />
+        { value===1 && 
+       <Storage
+          index={1}
+          value={value}
+          dir={theme.direction}
+        />
+       }
+       { value === 2 &&
+        <Composition 
+          index={2}
+          value={value}
+          dir={theme.direction}
+        />
+       } 
       </SwipeableViews>
       </div>
 

@@ -66,7 +66,6 @@ function Carouseltext(){
           </div>
         ))}
       </AutoPlaySwipeableViews>
-  
     </div>
     </div>
   );

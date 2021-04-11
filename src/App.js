@@ -32,6 +32,7 @@ function App() {
   const bio = result.bioCount;
   const glass = result.glassCount;
   const paper = result.paperCount;
+  
 
   const areas = [{
     country: 'Plastic',  area: plastic},

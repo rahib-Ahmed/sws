@@ -6,6 +6,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import HomeIcon from '@material-ui/icons/Home';
 import { useHistory } from "react-router-dom";
+import PublicSharpIcon from '@material-ui/icons/Public';
 
 
 const bottom = makeStyles({
@@ -30,9 +31,9 @@ const handleChange = (event, newValue) => {
 return (
   <div className="cn6">
   <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-    <BottomNavigationAction label="Switch" value="switch" icon={<CropFreeIcon />} />
+    <BottomNavigationAction label="Global" value="global" icon={<PublicSharpIcon />} />
     <BottomNavigationAction label="Scan" onClick={() => history.push("/Camera")} value="scan" icon={<CropFreeIcon />} />
-    <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} />
+    <BottomNavigationAction label="Home" onClick={()=>{window.location.reload(false)}} value="home" icon={<HomeIcon />} />
   </BottomNavigation>
   </div>
 )};
