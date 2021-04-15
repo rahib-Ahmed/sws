@@ -55,15 +55,17 @@ const classes = tab_slider();
         value={value}
         onChangeIndex={handleChangeIndex}
       >
-        
+        { props.load===false? " " :
         <Piechart
-        area={props.pieData}
+        pieData={props.pieData}
         index={0}
         value={value}
         dir={theme.direction}
         />
+}
         { value===1 && 
        <Storage
+       empty={props.empty}
           index={1}
           value={value}
           dir={theme.direction}

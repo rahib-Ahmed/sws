@@ -1,87 +1,62 @@
+import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import '../App.css';
-import PieChart, {
-  Series,
-  Label,
-  Connector,
-  Size,
-  Export,
-  Legend,
-  AdaptiveLayout,
-  Tooltip
-} from 'devextreme-react/ui/pie-chart';
+import CanvasJSReact from'../canvasjs.react';
+
+var CanvasJS = CanvasJSReact.CanvasJS;
+
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+const canva = makeStyles({
+  root: {
+    backgroundColor: 'black',
+    height: "500px", 
+    width: "800px", 
+    marginLeft: "-80px",
+     marginRight: "-80px"
+    // overflowX: 'hidden'
+  }
+})
 
 function Piechart(props){
- console.log(props.area)
-var pointClickHandler = function(e) {
-    toggleVisibility(e.target);
+  const classes = canva()  
+  const options = {
+
+    animationEnabled: true,
+    backgroundColor: "#B1E6B9",
+    segmentShowStroke: true,
+    segmentStrokeWidth: 4,
+    data: [{
+      lineColor: "#B1E6B9",
+      color: "white",
+      type: "pie",
+      indexLabelFontSize: 16,
+      radius: 110,
+      indexLabel: "{label} - {y}",
+      exploded: true,
+      yValueFormatString: "###0.0\"%\"",		
+      dataPoints: props.pieData
+    }]
   }
-  
-  var legendClickHandler = function(e){
-  let arg = e.target;
-  let item = e.component.getAllSeries()[0].getPointsByArg(arg)[0];
-  
-  toggleVisibility(item);
+  function explode() {
+    for (var i = 0; i < options.data[0].dataPoints.length; i++) {
+      options.data[0].dataPoints[i].exploded = true;
+    }
   }
-  
-  var toggleVisibility = function(item){
-  item.isVisible() ? item.hide() : item.show();
-  }
-  
-  var customizeTooltip = function(pointInfo) {
-    return pointInfo.value > 50 ? { color: 'red' } : { }; 
-  }
-  
-  function formatTxt(arg){
-    return `${arg.argumentText} (${arg.percentText})`;
-  }
- 
+  explode();
   return(
     <div className="cn2">
-<PieChart
-        index={0}
-        dataSource={props.area}
-        palette={['	#D3D3D3', '	#F0F0F0', '	#E8E8E8', '#E0E0E0', '#DCDCDC', '#D8D8D8' ]}
-        onPointClick={pointClickHandler}
-        onLegendClick={legendClickHandler}
-      >
-      <Tooltip 
-        enabled={true}
-        customizeTooltip={customizeTooltip}
-      />
-      
-      <Series
-          // color="white"
-          argumentField="country"
-          valueField="area"
-      >
-          <Label
-          position="inside"
-          backgroundColor="transparent"
-          visible={true}
-          customizeText={formatTxt}
-          >
-           <Connector visible={true} width={0.3} />
-           </Label>
-        </Series>
-   
+	 <div style={{overflowX: "hidden", display: "flex", justifyContent:"center", alignItems: "center"}}>
+			<div style={{width: "570px", display: "flex", justifyContent: "center",  overflowX: "hidden"}}> 
+      <CanvasJSChart className={classes.root} options = {options} 
+			/>
+      <div className="hide"></div>
+				 </div>
+				
+			</div> 
 
-        <Size width={300} />
-        <Export enabled={false} />
-        <Legend 
-        orientation="vertical"
-        horizontalAlignment="center"
-        verticalAlignment="bottom"
-        rowCount={2}
-        columnCount={1}
-        columnItemSpacing={10}
-        rowItemSpacing={10}
-        />
-        <AdaptiveLayout
-                    height={200}
-                    width={300}
-          />
-      </PieChart>   
+			
+		 
       </div>
     )};   
 

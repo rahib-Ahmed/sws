@@ -2,11 +2,13 @@ export function getTrashId() {
   console.log("called first")
   const query = window.location.search;
   const idParam = new URLSearchParams(query)
-  // const id = idParam.get('trashid')
 
-  const id = "3"; // static id rmov when completed!
+  const id = idParam.get('trashid')
+
+  // const id = "3"; // static id remove when completed!
+  
   localStorage.setItem("id", id)
-  console.log("1st" + localStorage.getItem("id"))
+  console.log("local Storage set" + localStorage.getItem("id"))
 
   var searchParams = new URLSearchParams();
   searchParams.append("id", id);

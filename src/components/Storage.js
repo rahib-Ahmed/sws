@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 import '../App.css';
 import anime from 'animejs/lib/anime.es.js';
 
-function Storage(){
+function Storage(props){
+    const empty = 100 - props.empty;
+    const x = `${empty}%`.toString();
+    console.log("filled storage"+x)
     useEffect(() => {
-
         const animation = anime({
-            targets: '.seg',
-            width: '90%',
+            targets: '.progressBar',
+            height: x,
             easing: 'easeInOutQuad',
             direction: 'alternate',
             loop: false
@@ -16,7 +18,9 @@ function Storage(){
     return (
         <div className="cnn2">
             <div className="seg"></div>
-        </div>
+            <div className="progressBar"></div>
+            <div className="progressText">{x}</div>
+         </div>
         )
     }
 

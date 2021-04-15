@@ -13,39 +13,48 @@ function App() {
 
   var [pie, setPie] = React.useState([])
   var [load, setLoad] = React.useState(false)
+  var [empty, setEmpty] = React.useState()
+  const props = {
+      pieData: pie,
+      empty: empty,
+      load: load
+  }
 
   useEffect(()=>{
     
     fetch('https://helpsws.herokuapp.com/scanned', fetchs.getTrashId())
   .then((res) => res.json())
   .then((result) => {
-    console.log("res"+result)
+    setLoad(true)
+    console.log("res "+result+" load state "+load)
   })
 
   fetch('https://helpsws.herokuapp.com/id', fetchs.Piechart())
 .then(res => res.json())
 .then(result => {
-  
+    console.log(result)
   console.log("res"+result)
-  const plastic = result.plasticCount;
-  const metal = result.metalCount;
-  const bio = result.bioCount;
-  const glass = result.glassCount;
-  const paper = result.paperCount;
+  const plastic = result.plasticPercentage;
+  const metal = result.metalPercentage;
+  const bio = result.bioPercentage;
+  const glass = result.glassPercentage;
+  const paper = result.paperPercentage;
+  const empty = result.emptyPercentage;
   
 
-  const areas = [{
-    country: 'Plastic',  area: plastic},
+  const areas = [
+    {
+      label: 'Plastic',  y: plastic},
      {
-    country: 'Metal',  area: metal},  
+      label: 'Metal',  y: metal},  
      {
-    country: 'Glass',  area: glass},
+      label: 'Glass',  y: glass},
      {
-    country: 'Bio',  area: bio},
+      label: 'Bio',  y: bio},
      {
-    country: 'Paper',  area: paper},
+      label: 'Paper',  y: paper},
   ];
-
+  setEmpty(empty)
   setPie(areas)
   console.log(areas)
 })
@@ -57,10 +66,7 @@ function App() {
     <div className="backg basic">
   
     <Header />
-    {/* {load===false? " " : 
-    <Piechart loading={load} /> 
-  } */}
-    <Tabsbutton pieData={pie} />     
+    <Tabsbutton {...props} />     
     <Carouseltext />
 <div className="cn5">
     {/* <button onClick={()=>{on()}}>hello</button> */}hello
