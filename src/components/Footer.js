@@ -33,7 +33,7 @@ return (
   <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
     <BottomNavigationAction label="Global" value="global" icon={<PublicSharpIcon />} />
     <BottomNavigationAction label="Scan" onClick={() => history.push("/Camera")} value="scan" icon={<CropFreeIcon />} />
-    <BottomNavigationAction label="Home" onClick={()=>{window.location.reload(false)}} value="home" icon={<HomeIcon />} />
+    <BottomNavigationAction label="Home" onClick={()=>{history.push('/')}} value="home" icon={<HomeIcon />} />
   </BottomNavigation>
   </div>
 )};

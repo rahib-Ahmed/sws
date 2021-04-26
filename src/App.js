@@ -12,12 +12,16 @@ function App() {
 
 
   var [pie, setPie] = React.useState([])
-  var [load, setLoad] = React.useState(false)
+  var [loadtab, setLoadtab] = React.useState(false)
   var [empty, setEmpty] = React.useState()
+  var [quote, setQuote] = React.useState([])
+  var [loadcarousel, setLoadcarousel] = React.useState(false)
   const props = {
       pieData: pie,
       empty: empty,
-      load: load
+      load: loadtab,
+      quote: quote,
+      loadCarousel: loadcarousel
   }
 
   useEffect(()=>{
@@ -25,15 +29,15 @@ function App() {
     fetch('https://helpsws.herokuapp.com/scanned', fetchs.getTrashId())
   .then((res) => res.json())
   .then((result) => {
-    setLoad(true)
-    console.log("res "+result+" load state "+load)
+    setLoadtab(true)
+    // console.log("res "+result+" load state "+load)
   })
 
   fetch('https://helpsws.herokuapp.com/id', fetchs.Piechart())
 .then(res => res.json())
 .then(result => {
-    console.log(result)
-  console.log("res"+result)
+  //   console.log(result)
+  // console.log("res"+result)
   const plastic = result.plasticPercentage;
   const metal = result.metalPercentage;
   const bio = result.bioPercentage;
@@ -56,9 +60,25 @@ function App() {
   ];
   setEmpty(empty)
   setPie(areas)
-  console.log(areas)
+  // console.log(areas)
+  
 })
+fetch('https://helpsws.herokuapp.com/getsentence', fetchs.getQuote())
+  .then(res => res.json())
+  .then((res)=>{
 
+    var text= []
+    
+    
+    for(var i=0; i<res.sentences.length; i++){
+        text.push({"label": res.sentences[i].sentence})
+}
+
+  setQuote(text)
+  setLoadcarousel(true)
+  // console.log(text)
+  })
+  
   }, [])
 
   return ( 
@@ -67,10 +87,9 @@ function App() {
   
     <Header />
     <Tabsbutton {...props} />     
-    <Carouseltext />
-<div className="cn5">
-    {/* <button onClick={()=>{on()}}>hello</button> */}hello
-    </div>
+    {loadcarousel===true?
+      <Carouseltext {...props} />
+    : ' '}
     <Footer />
  
     </div>

@@ -6,8 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorkerRegistration';
 import { BrowserRouter as Router, Route , BrowserRouter, Switch, useLocation } from "react-router-dom";
 import Camera from './components/Camera';
-import Test from './components/Test'
-import Canvachart from './components/Canvachart';
 
 ReactDOM.render(
   <Router history={BrowserRouter}>

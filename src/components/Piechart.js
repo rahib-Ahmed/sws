@@ -7,19 +7,9 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-const canva = makeStyles({
-  root: {
-    backgroundColor: 'black',
-    height: "500px", 
-    width: "800px", 
-    marginLeft: "-80px",
-     marginRight: "-80px"
-    // overflowX: 'hidden'
-  }
-})
 
 function Piechart(props){
-  const classes = canva()  
+    
   const options = {
 
     animationEnabled: true,
@@ -47,16 +37,11 @@ function Piechart(props){
   return(
     <div className="cn2">
 	 <div style={{overflowX: "hidden", display: "flex", justifyContent:"center", alignItems: "center"}}>
-			<div style={{width: "570px", display: "flex", justifyContent: "center",  overflowX: "hidden"}}> 
-      <CanvasJSChart className={classes.root} options = {options} 
+			<div  style={{width: "570px", display: "flex", justifyContent: "center",  overflowX: "hidden"}}> 
+      <CanvasJSChart options = {options} 
 			/>
-      <div className="hide"></div>
-				 </div>
-				
+       </div>
 			</div> 
-
-			
-		 
       </div>
     )};   
 

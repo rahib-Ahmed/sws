@@ -9,9 +9,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Header from './Header'
+import Footer from "./Footer";
 
 function Camera() {
-  console.log("inCamra")
+  
   const [delay,setDelay] = React.useState(300);
   const [result,setResult] = React.useState('Plas scan properly');
   const [open, setOpen] = React.useState(false);
@@ -37,17 +38,19 @@ function Camera() {
   }
   
     return (
-      <div>
-        <Header />
-        <QrReader
+      <div className="posi">
+        <Header className="pc1"  />
+        <QrReader 
         className="camera"
         showViewFinder={false}
           delay={delay}
           onError={handleError}
           onScan={handleScan}
         />
-    
-         <div>
+        <div className="pc2">
+        <Footer  />
+        </div>
+          <div>
           <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -62,10 +65,10 @@ function Camera() {
             {result}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions>{ result==="trash_link_here"?<Button disabled={true} >Open Link</Button> :
           <Button onClick={handleLink} color="primary">
             Open Link
-          </Button>
+          </Button>}
         </DialogActions>
       </Dialog>
     </div>

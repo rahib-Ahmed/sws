@@ -7,6 +7,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Piechart from './Piechart';
 import Storage from './Storage';
 import Composition from './Composition';
+import Loading from './Loading'
 
 function a11yProps(index) {
   
@@ -55,28 +56,29 @@ const classes = tab_slider();
         value={value}
         onChangeIndex={handleChangeIndex}
       >
-        { props.load===false? " " :
-        <Piechart
-        pieData={props.pieData}
-        index={0}
-        value={value}
-        dir={theme.direction}
-        />
+        { value===0 &&
+          <Composition 
+          index={0}
+          value={value}
+          dir={theme.direction}
+        /> 
 }
-        { value===1 && 
-       <Storage
-       empty={props.empty}
-          index={1}
-          value={value}
-          dir={theme.direction}
-        />
-       }
+        {  props.load===true? 
+        value && 
+      <Piechart
+      pieData={props.pieData}
+      index={1}
+      value={value}
+      dir={theme.direction}
+      /> : " "
+       }  
        { value === 2 &&
-        <Composition 
-          index={2}
-          value={value}
-          dir={theme.direction}
-        />
+        <Storage
+         empty={props.empty}
+            index={2}
+            value={value}
+            dir={theme.direction}
+          />
        } 
       </SwipeableViews>
       </div>

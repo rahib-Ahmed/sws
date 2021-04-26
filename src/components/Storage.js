@@ -4,7 +4,7 @@ import anime from 'animejs/lib/anime.es.js';
 
 function Storage(props){
     const empty = 100 - props.empty;
-    const x = `${empty}%`.toString();
+    const x = `${empty*0.95}%`.toString();
     console.log("filled storage"+x)
     useEffect(() => {
         const animation = anime({
@@ -12,14 +12,14 @@ function Storage(props){
             height: x,
             easing: 'easeInOutQuad',
             direction: 'alternate',
-            loop: false
+            loop: false,
         })
     })
     return (
         <div className="cnn2">
             <div className="seg"></div>
             <div className="progressBar"></div>
-            <div className="progressText">{x}</div>
+            <div className="progressText">{empty}%</div>
          </div>
         )
     }

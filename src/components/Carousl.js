@@ -7,18 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-const text = [
-    {
-      label: '“Be yourself; everyone else is already taken.”'},
-    {
-      label: '"Im selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you cant handle me at my worst, then you sure as hell dont deserve me at my best"'},
-    {
-      label: '"Two things are infinite: the universe and human stupidity and Im not sure about the universe."'
-    },
-    {
-      label: '"So many books, so little time"'
-    },
-  ];
+
   
 
   const carousel_text = makeStyles((theme) => ({
@@ -37,7 +26,9 @@ const text = [
     }
   }));
 
-function Carouseltext(){
+function Carouseltext(props){
+  
+    // console.log(props.quote)
     const classes = carousel_text();
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -50,7 +41,7 @@ function Carouseltext(){
       <div className="cn4">
       <div className={classes.root}>
       <Paper square elevation={0} className={classes.header}>
-        <Typography>{text[activeStep].label}</Typography>
+        <Typography>"{props.quote[activeStep].label}"</Typography>
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
@@ -58,7 +49,9 @@ function Carouseltext(){
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {text.map((step, index) => (
+        {
+        
+         props.quote.map((step, index) => (
           <div>
             {Math.abs(activeStep - index) <= 2 ? (
               <div key={step.label} />
