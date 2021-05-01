@@ -9,6 +9,7 @@ import Camera from './components/Camera';
 import Validation from './components/Validation';
 import Signup from './components/Signup';
 import Login from './components/Login'
+import Scanned from './components/Scanned';
 
 
 ReactDOM.render(
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Route path = {"/Camera"} exact  component = {Camera}/>
         <Route path = {"/Validation"} exact component = {Validation}/>
         <Route path = {"/Signup"} exact component = {Signup}/>
+        <Route path = {"/Scanned"} exact component = {Scanned}/>
       </Switch>
   </Router>,
   document.getElementById('root')

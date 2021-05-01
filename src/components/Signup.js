@@ -90,7 +90,7 @@ function Signup(){
     return(
     
         <div className="mainX">
-           <img alt="logo of sws" src={img}></img>
+           <img className="imgLogin" alt="logo of sws" src={img}></img>
             <div className="inner">
              <ValidationTextField
               required

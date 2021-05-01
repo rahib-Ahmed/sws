@@ -95,3 +95,15 @@ export function pieData(x) {
 return areas;
 }
 
+export function getLocked(){
+  var lockedMessage=['Unlocks on your first SignUp', 'Unlocks when your total plastic waste, for a week, is less than 20 percent', 
+        'Unlocks when your total plastic waste, for a month, is less than 20 percent', 
+        'Unlocks when your total plastic waste, for 6 months, is less than 20 percent',
+        'Unlocks when your total plastic waste, for a year, is less than 20 percent', 'Unlocks when you use SWS at a public place for the first time',
+        'Unlocks when you use SWS at a public place for 10', 'Unlocks when you recycle for the first time', 'Unlocks on 10 recycles']
+        return lockedMessage;
+}
+export function getUnlocked(){
+  var completedMessage=['a','b','c','d','e','f','g','h','i']
+        return completedMessage;
+}

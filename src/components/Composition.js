@@ -10,7 +10,7 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 function Composition(props){
-  console.log('in Pi')
+  // console.log('in Pi')
   console.log(props.pieUser)    
   const options = {
 

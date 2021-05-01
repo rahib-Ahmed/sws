@@ -70,7 +70,7 @@ import { useHistory,useLocation } from "react-router-dom";
     return(
     
         <div className="mainX">
-           <img alt="logo of sws" src={img}></img>
+           <img className="imgLogin" alt="logo of sws" src={img}></img>
             <div className="validationpara"><p>We have sent a mail to your ID {location.state.email}. Please follow the instructions and validate your email.</p></div>
         <div className="validbutton"><button onClick={()=>verifiedUser()}>Continue</button>
         <button onClick={()=>resend()}>Resend</button></div>

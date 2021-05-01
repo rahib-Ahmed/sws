@@ -5,7 +5,7 @@ import Carouseltext from './components/Carousl';
 import Tabsbutton from './components/Tabs';
 import Header from './components/Header'
 import * as fetchs from './backend/fetch.js';
-import { useHistory,useLocation } from "react-router-dom";
+import { useHistory, useLocation} from "react-router-dom";
 
 function App() {
 
@@ -22,6 +22,8 @@ function App() {
   const history = useHistory();
   const email = localStorage.getItem("email")
   const check = localStorage.getItem("check").toString()
+  const location = useLocation()
+  
   const props = {
       pieData: pie,
       empty: empty,
@@ -35,14 +37,8 @@ function App() {
 
 
   useEffect(()=>{
-
- fetch('https://helpsws.herokuapp.com/scanned', fetchs.getTrashId())
-  .then((res) => res.json())
-  .then((result) => {
-    console.log("in here")
-    console.log(result)
-  })
-
+    
+  setLoadtab(location.state)
   const params = new URLSearchParams()
   params.append("email", email)
   var header = new Headers()
@@ -113,7 +109,7 @@ fetch('https://helpsws.herokuapp.com/getsentence', fetchs.getQuote())
   <div className="backg basic">
  {loadhead===true?
    <Header /> : ' '
-}   {check==="true" || check==="false"?
+}   {loadtab===true || check==="false"?
     <Tabsbutton {...props} /> : ' '
     }     
 <div className="main">

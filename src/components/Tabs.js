@@ -80,14 +80,14 @@ function Tabsbutton(props){
         dir={theme.direction}
         /> : " "
          }  
-         { value === 2 &&
+         
           <Storage
            empty={props.empty}
               index={2}
               value={value}
               dir={theme.direction}
             />
-         } 
+          
         </SwipeableViews>
         </div>
         

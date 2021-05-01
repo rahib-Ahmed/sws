@@ -78,7 +78,7 @@ function Login(){
     return(
     
         <div className="mainX">
-           <img src={img}></img>
+           <img className="imgLogin" alt="logo of sws" src={img}></img>
             <div className="inner">
             <ValidationTextField
               required
