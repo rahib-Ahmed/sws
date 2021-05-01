@@ -8,8 +8,10 @@ var CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
+
 function Piechart(props){
-    
+  console.log('in Pi')
+  console.log(props.pieData)    
   const options = {
 
     animationEnabled: true,

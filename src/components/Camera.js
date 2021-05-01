@@ -11,6 +11,7 @@ import Slide from '@material-ui/core/Slide';
 import Header from './Header'
 import Footer from "./Footer";
 
+
 function Camera() {
   
   const [delay,setDelay] = React.useState(300);
@@ -22,6 +23,7 @@ function Camera() {
   });
 
   const handleLink = () => {
+    localStorage.setItem("check", "true")
     window.location.replace(result)
   }; 
   const handleClose = () =>{
@@ -50,6 +52,8 @@ function Camera() {
         <div className="pc2">
         <Footer  />
         </div>
+
+
           <div>
           <Dialog
         open={open}

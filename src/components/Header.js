@@ -23,11 +23,16 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function MenuAppBar() {
+export default function MenuAppBar(props) {
+
+
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const name = localStorage.getItem("name")
+  
+
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -45,12 +50,15 @@ export default function MenuAppBar() {
     <div className="cn1">
       <AppBar style={{ background: '#CCF5D2', borderRadius: 25, color: '#05431A' }} className="bars" position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Hello, User
+          <div>
+          <Typography variant="h6">
+            Hello, {name.split(" ", 1)}
           </Typography>
+          </div>
           {auth && (
-            <div>
-              <IconButton
+            <div className="gap">
+              <IconButton 
+              
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"

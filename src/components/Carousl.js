@@ -13,14 +13,13 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
   const carousel_text = makeStyles((theme) => ({
     root: {
       display: 'flex',
-      // maxWidth: '94%',
-  
     },
     header: {
-      flex: 1,
+     height: '16.85vh',
+     width: '100vw',
       justifyContent: 'center',
       display: 'flex',
-      alignItems: 'center',  
+      alignItems: 'flex-end',  
       backgroundColor: '#B1E6B9',
       textAlign: 'center',
     }

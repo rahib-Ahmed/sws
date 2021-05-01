@@ -6,12 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorkerRegistration';
 import { BrowserRouter as Router, Route , BrowserRouter, Switch, useLocation } from "react-router-dom";
 import Camera from './components/Camera';
+import Validation from './components/Validation';
+import Signup from './components/Signup';
+import Login from './components/Login'
+
 
 ReactDOM.render(
   <Router history={BrowserRouter}>
       <Switch >
-        <Route path = {"/"} exact component = {App}/>
+      <Route path = {"/"} exact component = {Login}/> 
+      <Route path = {"/App"} exact component = {App}/>
         <Route path = {"/Camera"} exact  component = {Camera}/>
+        <Route path = {"/Validation"} exact component = {Validation}/>
+        <Route path = {"/Signup"} exact component = {Signup}/>
       </Switch>
   </Router>,
   document.getElementById('root')
