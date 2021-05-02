@@ -5,6 +5,7 @@ import img1 from '../images/green-energy.png';
 import img2 from '../images/green-tea.png';
 import img3 from '../images/ecology.png';
 import * as fetchs from '../backend/fetch'
+import Footer from './Footer'
 function Reward(){
         var locked= fetchs.getLocked()
         var unlocked= fetchs.getUnlocked()

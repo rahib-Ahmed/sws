@@ -21,13 +21,14 @@ function a11yProps(index) {
 const StyledTabs = withStyles({
     root: {
     borderRadius: 25,
-    color: "white",
+    color: "#05431A",
+    
  }
 })(Tabs);
 
 const tab_slider = makeStyles(() => ({
   root: {
-    backgroundColor: 'rgb(121,161,114)',
+    backgroundColor: '#CCF5D2',
     width: '95%',
     borderRadius: 25,
   }
@@ -114,7 +115,7 @@ function Tabsbutton(props){
             <Tab label="Storage" {...a11yProps(1)} /> : ' '  
            }
            {check==="true"?
-            <Tab label="Composition" {...a11yProps(2)} /> : ' ' 
+            <Tab  label="Composition" {...a11yProps(2)} /> : ' ' 
          }
           </StyledTabs> 
       </div>

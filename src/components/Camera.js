@@ -50,7 +50,7 @@ function Camera() {
           onScan={handleScan}
         />
         <div className="pc2">
-        <Footer  />
+        <Footer />
         </div>
 
 

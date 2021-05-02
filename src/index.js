@@ -10,6 +10,7 @@ import Validation from './components/Validation';
 import Signup from './components/Signup';
 import Login from './components/Login'
 import Scanned from './components/Scanned';
+import Reward from './components/Reward'
 
 
 ReactDOM.render(
@@ -21,6 +22,7 @@ ReactDOM.render(
         <Route path = {"/Validation"} exact component = {Validation}/>
         <Route path = {"/Signup"} exact component = {Signup}/>
         <Route path = {"/Scanned"} exact component = {Scanned}/>
+        <Route path = {"/Reward"} exact component = {Reward}/>
       </Switch>
   </Router>,
   document.getElementById('root')

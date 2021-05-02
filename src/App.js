@@ -7,6 +7,7 @@ import Header from './components/Header'
 import * as fetchs from './backend/fetch.js';
 import { useHistory, useLocation} from "react-router-dom";
 
+
 function App() {
 
 
@@ -63,14 +64,14 @@ function App() {
   fetch('https://helpsws.herokuapp.com/userdata', req)
   .then((res) => res.json())
   .then((result) => {
-  //   console.log("user DATA")
+    console.log("user DATA")
   console.log(result)
   fetchs.pieData(result)
   console.log(fetchs.pieData(result))
   setPieuser(fetchs.pieData(result))
  
     //  setName(result.name)
-  })
+  }).catch(err=>console.log(err))
   
   
 fetch('https://helpsws.herokuapp.com/id', fetchs.Piechart())

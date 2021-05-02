@@ -13,15 +13,22 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
   const carousel_text = makeStyles((theme) => ({
     root: {
       display: 'flex',
+      
+     
     },
     header: {
-     height: '16.85vh',
-     width: '100vw',
+      paddingTop: '20px',
+     height: '11.85vh',
+     paddingBottom: '50px',
+     width: '95vw',
       justifyContent: 'center',
       display: 'flex',
-      alignItems: 'flex-end',  
-      backgroundColor: '#B1E6B9',
+      alignItems: 'center',  
+      backgroundColor: '#CCF5D2',
       textAlign: 'center',
+      fontWeight: '20px',
+      borderRadius: 25
+
     }
   }));
 
@@ -40,7 +47,7 @@ function Carouseltext(props){
       <div className="cn4">
       <div className={classes.root}>
       <Paper square elevation={0} className={classes.header}>
-        <Typography>"{props.quote[activeStep].label}"</Typography>
+        <Typography  className="basicCarl"><h3>"{props.quote[activeStep].label}"</h3></Typography>
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
