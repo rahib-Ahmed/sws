@@ -22,7 +22,7 @@ function App() {
   var [pieuser, setPieuser] = React.useState([])
   const history = useHistory();
   const email = localStorage.getItem("email")
-  const check = localStorage.getItem("check").toString()
+  const check = localStorage.getItem("check")
   const location = useLocation()
   
   const props = {
@@ -35,11 +35,21 @@ function App() {
       loadFoot: loadfoot,
       pieUser: pieuser
    }
-
+   function checkLogin()  {
+     if(email===null) {
+    
+  var x =  window.location.replace("/Login")
+   } else {
+     setLoadtab(true)
+   }
+   return x;
+  }
 
   useEffect(()=>{
     
-  setLoadtab(location.state)
+  checkLogin()
+
+  
   const params = new URLSearchParams()
   params.append("email", email)
   var header = new Headers()
@@ -110,8 +120,8 @@ fetch('https://helpsws.herokuapp.com/getsentence', fetchs.getQuote())
   <div className="backg basic">
  {loadhead===true?
    <Header /> : ' '
-}   {loadtab===true || check==="false"?
-    <Tabsbutton {...props} /> : ' '
+}   {loadtab===true || check===false?
+    <Tabsbutton   {...props} /> : ' '
     }     
 <div className="main">
     {loadcarousel===true?

@@ -67,11 +67,6 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-
-
-
-
-
   
 function Footer(props){
   const [opens, setOpens] = React.useState(false);

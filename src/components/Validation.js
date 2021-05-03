@@ -15,11 +15,14 @@ import { useHistory,useLocation } from "react-router-dom";
     
   
     function verifiedUser() {
-
+      const props = {
+         email : location.state.email,
+         logged: true
+      }
       console.log('in verify')
 
       var paramss = new URLSearchParams()
-      paramss.append("email",location.state.email)
+      paramss.append("email", location.state.email)
       var header = new Headers()
       header.append("Content-Type", "application/x-www-form-urlencoded")
         var request={
@@ -34,7 +37,10 @@ import { useHistory,useLocation } from "react-router-dom";
   .then((result) => {
 
     if(result.status === true) {
-      history.push("/")
+      localStorage.setItem("email", props.email)
+      localStorage.setItem("check", "false" )
+      localStorage.getItem("check")
+      history.push({pathname: "/", state: props})
     } else {
       setErr('User not verified')
     }

@@ -51,8 +51,9 @@ function Tabsbutton(props){
     };
   
     const handleChangeIndex = (index) => {
-   
+      
       setValue(index);
+    
     };
  
      return (
@@ -62,6 +63,7 @@ function Tabsbutton(props){
         <SwipeableViews
           index={value}
           value={value}
+          disabled={true}
           onChangeIndex={handleChangeIndex}
         >
           { value===0 &&
@@ -82,12 +84,14 @@ function Tabsbutton(props){
         /> : " "
          }  
          
+         
           <Storage
            empty={props.empty}
               index={2}
               value={value}
               dir={theme.direction}
-            />
+            /> : ' '
+         
           
         </SwipeableViews>
         </div>

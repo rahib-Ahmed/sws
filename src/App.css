@@ -6,7 +6,6 @@
 }
  body {
     background-color: #B1E6B9;
-
     font-family: 'Amiko', sans-serif;
     height: 100%;
     margin: 0
@@ -229,6 +228,7 @@
     width: 100%;
     flex-direction: column;
 
+
 }
 
 .mainX {
@@ -361,3 +361,9 @@ margin-top: 10%;
      width: 28px;
      filter: grayscale(100%);
  }
+.loads {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}

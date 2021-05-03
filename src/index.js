@@ -16,8 +16,8 @@ import Reward from './components/Reward'
 ReactDOM.render(
   <Router history={BrowserRouter}>
       <Switch >
-      <Route path = {"/"} exact component = {Login}/> 
-      <Route path = {"/App"} exact component = {App}/>
+      <Route path = {"/"} exact component = {App}/> 
+      <Route path = {"/Login"} exact component = {Login}/>
         <Route path = {"/Camera"} exact  component = {Camera}/>
         <Route path = {"/Validation"} exact component = {Validation}/>
         <Route path = {"/Signup"} exact component = {Signup}/>

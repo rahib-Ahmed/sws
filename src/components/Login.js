@@ -44,7 +44,8 @@ function Login(){
 
   const history = useHistory();
   const props = {
-    email: email
+    email: email,
+    logged: true
   }
   function login(){
  

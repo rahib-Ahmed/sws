@@ -3,11 +3,16 @@ import * as fetchs from '../backend/fetch';
 import { useHistory} from "react-router-dom";
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import logo from '../images/greenside.png';
+import { Typography } from '@material-ui/core';
+import { FieldPanelTexts } from 'devextreme-react/pivot-grid';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
@@ -34,9 +39,11 @@ fetch('https://helpsws.herokuapp.com/scanned', fetchs.getTrashId())
   })
 })
 return(
-  <div>
+  <div >
   <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-    <CircularProgress color="inherit" />
+  <CircularProgress color="inherit" />
+    <Typography style={{marginTop: '50px'}}>Chotto Matte Kudasai</Typography>
+    
   </Backdrop>
 </div>
 )
