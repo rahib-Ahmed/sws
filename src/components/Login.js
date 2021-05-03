@@ -67,7 +67,7 @@ function Login(){
       localStorage.setItem("email", props.email)
       localStorage.setItem("check", "false" )
       localStorage.getItem("check")
-      history.push("/App")
+      history.push("/")
     } else if(result.status==="User is not verified") {
       history.push({pathname: "/Validation", state: props})
     } else {

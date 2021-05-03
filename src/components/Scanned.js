@@ -35,7 +35,7 @@ fetch('https://helpsws.herokuapp.com/scanned', fetchs.getTrashId())
     console.log("in scanned here")
     console.log(result)
     var x = true
-    history.push({pathname: "/App", state: x})
+    history.push({pathname: "/", state: x})
   })
 })
 return(

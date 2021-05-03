@@ -43,7 +43,7 @@ function Tabsbutton(props){
   const classes = tab_slider();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
-    const check = localStorage.getItem("check").toString()
+    const check = localStorage.getItem("check")
     console.log(check)
     const handleChange = (event, newValue) => {
       

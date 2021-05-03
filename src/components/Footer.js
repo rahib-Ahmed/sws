@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../App.css';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -6,7 +6,6 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import CropFreeIcon from '@material-ui/icons/CropFree';
 import HomeIcon from '@material-ui/icons/Home';
 import { useHistory } from "react-router-dom";
-import PublicSharpIcon from '@material-ui/icons/Public';
 import StopIcon from '@material-ui/icons/Stop';
 import * as fetchs from '../backend/fetch';
 import Dialog from '@material-ui/core/Dialog';
@@ -17,6 +16,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import achi from '../images/star.png';
+import { Button } from '@material-ui/core';
 
 
 const bottom = makeStyles({
@@ -30,7 +30,7 @@ const bottom = makeStyles({
 function Ach(){
   return (
     <div>
-      <img className="iconsize" src={achi}></img>
+      <img alt="logo of sws" className="iconsize" src={achi}></img>
     </div>
   )
 }  
@@ -67,21 +67,83 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-  
+
+
 function Footer(props){
+
+  // useEffect(()=>{
+  //   x()
+   
+  // }, [])
+  
   const [opens, setOpens] = React.useState(false);
   const check = localStorage.getItem("check")
+  
+//   const [opend, setOpend] = React.useState(true);
+//  const [val,setVal] = React.useState()
+//   const [timer, setTimer] = React.useState();
   const handleClickOpen = () => {
     setOpens(true);
   };
   const handleClose = () => {
     localStorage.setItem("check", "false")
     setOpens(false);
-    window.location.replace("/App")
+    window.location.replace("/")
   };
+
+// function x(){
+//   var timeleft = 12; 
+//   var downloadTimer =  setInterval(() => {
+//     if(timeleft === 0){
+//       clearInterval(downloadTimer);
+//       console.log("not me "+timeleft)
+//       setVal(0)
+//     //  endsession()
+//     } else {
+//       if(timeleft===10) {
+//         console.log('here')
+//         setTimer(timeleft)
+     
+//       }   
+//       setVal(timeleft)
+//       console.log("remaining"+console.log(timeleft))  
+//     }
+//     timeleft -= 1;
+
+//   }, 1000);
+
+
+// }
+//   function reset() {
+//     setOpend(false)
+//     x()
+//   }  
+// function Somee() {
+//   const handleClose = () => {
+//     localStorage.setItem("check", "false")
+//     setOpens(false);
+//     window.location.replace("/")
+//   };
+//   return (
+//     <>
+//     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={opend}>
+//         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+//           End Session
+//         </DialogTitle>
+//         <DialogContent dividers>
+//           <Typography gutterBottom>
+//            Session will end in {val} seconds please click on here button to continue this session
+//           </Typography>
+//         </DialogContent>
+//         <Button onClick={()=>reset()}>here</Button>
+//       </Dialog>
+//     </>
+//   )
+// }
+
 function endsession() {
 
-    const email=localStorage.getItem("email")
+ const email=localStorage.getItem("email")
     fetch('https://helpsws.herokuapp.com/id', fetchs.Piechart())
     .then(res => res.json())
     .then(result => {
@@ -121,6 +183,7 @@ const handleChange = (event, newValue) => {
   setValue(newValue);
 };
 
+
 return (
   <div className="cn6">
   <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
@@ -128,7 +191,7 @@ return (
     <BottomNavigationAction label="Scan" onClick={() => history.push("/Camera")} value="Scan" icon={<CropFreeIcon />} />
    {check==="true"?
     <BottomNavigationAction label="Stop" onClick={()=>endsession()} value="Stop" icon={<StopIcon />} /> : ' '}
-    <BottomNavigationAction label="Home" onClick={()=>{window.location.replace("/App")}} value="Home" icon={<HomeIcon />} />   
+    <BottomNavigationAction label="Home" onClick={()=>{window.location.replace("/")}} value="Home" icon={<HomeIcon />} />   
   </BottomNavigation>
 
   <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={opens}>
@@ -141,6 +204,9 @@ return (
           </Typography>
         </DialogContent>
       </Dialog>
+     {/* {timer===10 && check==="true"? <Somee /> : ' '} */}
+
+      
   </div>
 )};
 

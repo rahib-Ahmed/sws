@@ -13,7 +13,7 @@ function App() {
 
   var [pie, setPie] = React.useState([])
   var [sesstart, setSesstart] = React.useState()
-  var [loadtab, setLoadtab] = React.useState(false)
+  var [loadtab, setLoadtab] = React.useState(true)
   var [empty, setEmpty] = React.useState()
   var [quote, setQuote] = React.useState([])
   var [loadcarousel, setLoadcarousel] = React.useState(false)
@@ -33,15 +33,13 @@ function App() {
       loadCarousel: loadcarousel,
       sessionStart: sesstart,
       loadFoot: loadfoot,
-      pieUser: pieuser
+      pieUser: pieuser 
    }
    function checkLogin()  {
-     if(email===null) {
+     if(email===null) {      
     
-  var x =  window.location.replace("/Login")
-   } else {
-     setLoadtab(true)
-   }
+  var x =  history.push("/Login")
+   } 
    return x;
   }
 
@@ -49,7 +47,7 @@ function App() {
     
   checkLogin()
 
-  
+
   const params = new URLSearchParams()
   params.append("email", email)
   var header = new Headers()
@@ -120,7 +118,7 @@ fetch('https://helpsws.herokuapp.com/getsentence', fetchs.getQuote())
   <div className="backg basic">
  {loadhead===true?
    <Header /> : ' '
-}   {loadtab===true || check===false?
+}   {loadtab===true || check==="false"?
     <Tabsbutton   {...props} /> : ' '
     }     
 <div className="main">
