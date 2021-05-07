@@ -62,11 +62,13 @@ function Login(){
   fetch('https://helpsws.herokuapp.com/login', request)
   .then((res) => res.json())
   .then((result) => {
-    console.log(result)
+    // console.log(result)
     if(result.status === "User login successful") {
       localStorage.setItem("email", props.email)
       localStorage.setItem("check", "false" )
+      localStorage.setItem("first", true)
       localStorage.getItem("check")
+      localStorage.setItem("status", JSON.stringify([false,false,false, false,false,false, false,false,false]))
       history.push("/")
     } else if(result.status==="User is not verified") {
       history.push({pathname: "/Validation", state: props})
