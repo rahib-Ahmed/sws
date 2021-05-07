@@ -312,10 +312,12 @@ margin-top: 10%;
     flex: 1;
 }
 .rewardMain{
+
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    flex-direction: column;
     /* height: 100vh; */
     overflow-y: scroll;
 }
@@ -323,14 +325,14 @@ margin-top: 10%;
     background-color: #CCF5D2;
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 75%;
     /* justify-content: start; */
     text-align: center;
     padding: 2vh;
     /* height: 82vh; */
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: 9vh;
+    margin-top: 3vh;
     margin-bottom: 9vh;
     border-radius: 25px;
 }
@@ -366,4 +368,65 @@ margin-top: 10%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+.notIcon {
+    position: sticky;
+    margin-top: 6px;
+    left: 95px;
+    background-color: green;
+    height: 10px;
+    width: 10px;
+    border-radius: 50px;
+}
+.modFont{
+    color: #05431A;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Amiko';
+    font-weight: bolder;
+    font-size:12px;
+}
+.modHead{
+    color: #05431A;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Amiko';
+    font-weight: bolder;
+    font-size:17px;
+}
+.hereStyle{
+    color:#CE5310;
+    font-family: 'Amiko';
+    font-weight: bolder;
+    padding-left:190px;
+}
+.openlinkStyle{
+    color:#CE5310;
+    font-family: 'Amiko';
+    padding-left: 50px;
+}
+.status {
+    position: absolute;
+    background-color: #05431A;
+    /* left: 95px; */
+    margin-left: 20%;
+    margin-top: 4%;
+    height: 8px;
+     width: 8px;
+    border-radius: 50px;
+}
+.but{
+    /* background-color: #05431A; */
+    display: grid;
+    align-self: flex-start;
+    margin-left: 8%;
+    margin-top: 5%;
+  
+}
+.noData {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48vh;
+    width: 100vw;
 }
