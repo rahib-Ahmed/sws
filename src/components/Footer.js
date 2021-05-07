@@ -20,12 +20,12 @@ import { Button } from '@material-ui/core';
 
 
 const bottom = makeStyles({
-    root: {
-      width: '95%',
-      backgroundColor: 'white',
-      borderRadius: 40
-    },
-  });
+  root: {
+    width: '95%',
+    backgroundColor: 'white',
+    borderRadius: 40
+  },
+});
 
 function Ach(){
   return (
@@ -42,22 +42,22 @@ const styles = (theme) => ({
   },
   closeButton: {
     position: 'absolute',
-    top: 10,
-    right: -40,
-    color: theme.palette.grey[500],
+    top:1,
+    right: -53,
+    color: '#CE5310',
   },
 });
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
+    <Typography className="modFont">{children}</Typography>
+    {onClose ? (
+      <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <CloseIcon />
+      </IconButton>
+    ) : null}
+  </MuiDialogTitle>
   );
 });
 
@@ -70,86 +70,130 @@ const DialogContent = withStyles((theme) => ({
 
 
 function Footer(props){
-
-  // useEffect(()=>{
-  //   x()
-   
-  // }, [])
-  
-  const [opens, setOpens] = React.useState(false);
+ const [opens, setOpens] = React.useState(false);
   const check = localStorage.getItem("check")
+  const [dialog, setDialog] = React.useState(false)
+  const [status, setStatus] = React.useState(fetchs.setAchievements())
   
-//   const [opend, setOpend] = React.useState(true);
-//  const [val,setVal] = React.useState()
-//   const [timer, setTimer] = React.useState();
+  useEffect(()=>{
+    var set = [true, false, false, false, false, false, false, false, false ]
+ 
+   fetch('https://helpsws.herokuapp.com/usertrack', fetchs.setAchievements())
+  .then(res=>res.json())
+  .then(result=>{
+      localStorage.setItem("recycled", result.recycled)
+      localStorage.setItem("scanned", result.scanned)
+    if(result.recycled >= 1) {
+        set[7] = true
+    } if(result.scanned >= 1) {
+      set[5] = true
+    }
+    if( result.recycled >= 10) {
+      set[8] = true
+  } if(result.scanned >= 10) {
+      set[6] = true
+  }
+
+  fetch('https://helpsws.herokuapp.com/userdata', fetchs.setAchievements())
+  .then(res=>res.json())
+  .then(result => {
+    if(result.days > 7 && result.plasticPercentage < 20) {
+      set[1] = true
+    } 
+   var prev =  localStorage.getItem("status").split(",")
+   var newAchi = false
+
+   
+   for(var i = 0; i<9; i++) {
+     if(prev[i] == "true"){
+       prev[i] = true
+     }else {prev[i] = false}
+     if(prev[i] != set[i]) {
+       newAchi = true
+      break
+      }   
+   }
+   localStorage.setItem("status", set)
+    
+   setStatus(newAchi)
+  })
+
+  })
+  }, [])
+ 
   const handleClickOpen = () => {
     setOpens(true);
   };
-  const handleClose = () => {
-    localStorage.setItem("check", "false")
-    setOpens(false);
-    window.location.replace("/")
+ 
+  var timer = 30;
+  function timerCountdown(){
+    var dialogTimer = setInterval(()=>{
+      if(timer <= 10) {
+        setDialog(true)
+        timer = 1000
+        clearInterval(dialogTimer)
+      }
+      timer -= 1
+    }, 1000)
+}
+
+function reset() {
+  setDialog(false);
+  timer = 20;
+}
+
+if(check==="true") {
+  timerCountdown()
+ }
+function Somee() {
+  const [some,setSome] =React.useState(10)
+  const [opend, setOpend] = React.useState(true);
+useEffect(()=>{
+  if (some===0) {
+    endsession()
+  } else {
+  var x =
+  some > 0 &&  setInterval(()=>{
+      setSome(some - 1)                                
+  }, 1000) 
+  return () => clearInterval(x)
+}
+}, [some])
+
+  const handleCloses = () => {
+   reset() 
   };
-
-// function x(){
-//   var timeleft = 12; 
-//   var downloadTimer =  setInterval(() => {
-//     if(timeleft === 0){
-//       clearInterval(downloadTimer);
-//       console.log("not me "+timeleft)
-//       setVal(0)
-//     //  endsession()
-//     } else {
-//       if(timeleft===10) {
-//         console.log('here')
-//         setTimer(timeleft)
-     
-//       }   
-//       setVal(timeleft)
-//       console.log("remaining"+console.log(timeleft))  
-//     }
-//     timeleft -= 1;
-
-//   }, 1000);
+  return (
+    <>
+     <Dialog onClose={handleCloses} aria-labelledby="customized-dialog-title" open={opend}>
+        <DialogTitle id="customized-dialog-title" onClose={handleCloses}>
+          <div className="modHead">
+          End Session
+          </div>
+        </DialogTitle>
+        <DialogContent dividers>
+          <div className="modFont"gutterBottom>
+           Session will end in {some} seconds please click on here button to continue this session
+          </div>
+        </DialogContent>
+        <Button onClick={handleCloses}><div className="hereStyle">here</div></Button>
+      </Dialog>
+    </>
+  )
+}
 
 
-// }
-//   function reset() {
-//     setOpend(false)
-//     x()
-//   }  
-// function Somee() {
-//   const handleClose = () => {
-//     localStorage.setItem("check", "false")
-//     setOpens(false);
-//     window.location.replace("/")
-//   };
-//   return (
-//     <>
-//     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={opend}>
-//         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-//           End Session
-//         </DialogTitle>
-//         <DialogContent dividers>
-//           <Typography gutterBottom>
-//            Session will end in {val} seconds please click on here button to continue this session
-//           </Typography>
-//         </DialogContent>
-//         <Button onClick={()=>reset()}>here</Button>
-//       </Dialog>
-//     </>
-//   )
-// }
 
 function endsession() {
 
+    setDialog(false)
+   
+    
  const email=localStorage.getItem("email")
     fetch('https://helpsws.herokuapp.com/id', fetchs.Piechart())
     .then(res => res.json())
     .then(result => {
-      
-      console.log(result)
-    var session = new URLSearchParams();
+     var session = new URLSearchParams();
     session.append("start", JSON.stringify(props.sessionStart));
     session.append("end", JSON.stringify(result));
     session.append("email", email)
@@ -163,13 +207,14 @@ function endsession() {
     fetch('https://helpsws.herokuapp.com/updateuserdata', req)
     .then((res)=>{
       res.json()
-      console.log('here')
     }
       )
     .then(result=>{
-      console.log(result)
-      handleClickOpen() 
+      setOpens(true)
       
+      handleClickOpen() 
+        localStorage.setItem("check", "false")
+       setDialog(false)
   })
   .catch(err=>console.log(err))
   })   
@@ -182,31 +227,40 @@ const [value, setValue] = React.useState('recents');
 const handleChange = (event, newValue) => {
   setValue(newValue);
 };
-
-
+const handleClose = () => {
+  setOpens(false);
+  window.location.replace("/")
+};
+function Nap() {
+  return (
+    <div>
+    {status===true? <div className="status"></div> : ' '}
+    <Ach />
+    </div>
+  )
+}
 return (
   <div className="cn6">
   <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-    <BottomNavigationAction label="Achievements" onClick={() => history.push("/Reward")} value="Achievements" icon={<Ach />} />
+    <BottomNavigationAction label="Achievements" onClick={() => history.push("/Reward")} value="Achievements" icon={<Nap />} />
     <BottomNavigationAction label="Scan" onClick={() => history.push("/Camera")} value="Scan" icon={<CropFreeIcon />} />
    {check==="true"?
     <BottomNavigationAction label="Stop" onClick={()=>endsession()} value="Stop" icon={<StopIcon />} /> : ' '}
     <BottomNavigationAction label="Home" onClick={()=>{window.location.replace("/")}} value="Home" icon={<HomeIcon />} />   
   </BottomNavigation>
 
+
   <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={opens}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          End Session
+          <div className="modHead">End Session</div>
         </DialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
+          <div className="modFont"gutterBottom>
            Session ended successfully 
-          </Typography>
+          </div>
         </DialogContent>
       </Dialog>
-     {/* {timer===10 && check==="true"? <Somee /> : ' '} */}
-
-      
+      {dialog===true && check==="true"? <Somee /> : ' '}
   </div>
 )};
 
