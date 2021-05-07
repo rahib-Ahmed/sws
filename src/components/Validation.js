@@ -19,7 +19,7 @@ import { useHistory,useLocation } from "react-router-dom";
          email : location.state.email,
          logged: true
       }
-      console.log('in verify')
+
 
       var paramss = new URLSearchParams()
       paramss.append("email", location.state.email)
@@ -40,6 +40,7 @@ import { useHistory,useLocation } from "react-router-dom";
       localStorage.setItem("email", props.email)
       localStorage.setItem("check", "false" )
       localStorage.getItem("check")
+      localStorage.setItem("status", JSON.stringify([false,false,false, false,false,false, false,false,false]))
       history.push({pathname: "/", state: props})
     } else {
       setErr('User not verified')
@@ -49,7 +50,7 @@ import { useHistory,useLocation } from "react-router-dom";
     }
 
    
-    console.log(location.state);
+ 
     function resend(){
       
       var params = new URLSearchParams()
@@ -66,13 +67,11 @@ import { useHistory,useLocation } from "react-router-dom";
   fetch('https://helpsws.herokuapp.com/sendmail', request)
   .then((res) => res.json())
   .then((result) => {
-  console.log("res"+result)
+
   alert('Mail Sent!')
   })
     }
   
-   
-
     return(
     
         <div className="mainX">
@@ -85,4 +84,4 @@ import { useHistory,useLocation } from "react-router-dom";
       
     )
   }
-export default Validation
+export default Validation;
