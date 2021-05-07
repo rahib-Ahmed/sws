@@ -3,16 +3,10 @@ export function getTrashId() {
   const query = window.location.search;
   const idParam = new URLSearchParams(query)
   
-  const id = idParam.get('trashid')
-  // const check = idParam.get('check')
-  
-
-                                                  
+  const id = idParam.get('trashid')                                                
   // const id = "4"; // static id remove when completed!
-  // var check = false
- 
   localStorage.setItem("id", id)
-  console.log("local Storage set" + localStorage.getItem("id") + " chck valu " + localStorage.getItem("check"));
+
 
   var searchParams = new URLSearchParams();
   searchParams.append("id", id);
@@ -30,8 +24,7 @@ export function getTrashId() {
 
 export function Piechart() {
 
-  console.log("called second")
-  console.log("second" + localStorage.getItem("id"))
+ 
   var id = localStorage.getItem("id")
   var searchParams = new URLSearchParams();
   searchParams.append("id", id);
@@ -95,6 +88,27 @@ export function pieData(x) {
 return areas;
 }
 
+export function updateUserTrack(type){
+  
+  // console.log(type)
+  var email = localStorage.getItem("email")
+  var searchParams = new URLSearchParams();
+  searchParams.append("email", email);
+  searchParams.append("task", type);
+  var header = new Headers()
+  header.append("Content-Type", "application/x-www-form-urlencoded")
+
+  const req = {
+
+    method: 'POST',
+    header: header,
+    body: searchParams
+  }
+
+
+  return req;
+}
+
 export function getLocked(){
   var lockedMessage=['Unlocks on your first SignUp', 'Unlocks when your total plastic waste, for a week, is less than 20 percent', 
         'Unlocks when your total plastic waste, for a month, is less than 20 percent', 
@@ -104,6 +118,23 @@ export function getLocked(){
         return lockedMessage;
 }
 export function getUnlocked(){
-  var completedMessage=['a','b','c','d','e','f','g','h','i']
+  var completedMessage=['Way to go, on your first step towards a sustainable planet!','All organic Novice!','All organic Junior!','All organic Senior!','All organic Pro','Hello Neighbours!','Hello World!','Doing my part.','Im going all the way!']
         return completedMessage;
+}
+
+export function setAchievements() {
+
+  var email = localStorage.getItem("email")
+  var searchParams = new URLSearchParams();
+  searchParams.append("email", email);
+  searchParams.append("days", "7")
+  var header = new Headers()
+  header.append("Content-Type", "application/x-www-form-urlencoded")
+  var req = {
+    method: 'POST',
+    body: searchParams,
+    header: header
+  }
+
+  return req;
 }
