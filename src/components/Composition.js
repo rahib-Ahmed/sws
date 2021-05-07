@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
 import '../App.css';
 import CanvasJSReact from'../canvasjs.react';
@@ -10,8 +10,16 @@ const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
 function Composition(props){
-  // console.log('in Pi')
-  console.log(props.pieUser)    
+  const [data,setData] = React.useState()
+  useEffect(()=>{
+    for (var i = 0; i < options.data[0].dataPoints.length; i++) {
+      var x = options.data[0].dataPoints[i].y
+          if(x===0) {
+            setData(true)
+          }
+          break
+      }
+  })
   const options = {
 
     animationEnabled: true,
@@ -36,12 +44,13 @@ function Composition(props){
     }
   }
   explode();
+ 
+  
   return(
     <div className="cn2">
 	 <div style={{overflowX: "hidden", display: "flex", justifyContent:"center", alignItems: "center"}}>
 			<div  style={{width: "570px", display: "flex", justifyContent: "center",  overflowX: "hidden"}}> 
-      <CanvasJSChart options = {options} 
-			/>
+       {data===true? <div className="noData">Scan to show</div> : <CanvasJSChart options = {options}/> }
        </div>
 			</div>  
       </div>
