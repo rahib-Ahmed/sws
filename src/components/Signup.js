@@ -71,14 +71,12 @@ function Signup(){
     fetch('https://helpsws.herokuapp.com/addaccount', request)
     .then((res) => res.json())
     .then((result) => {
-    console.log("res"+result)
     setName('');
     setEmail('');
     setPassword('');
     fetch('https://helpsws.herokuapp.com/sendmail', request)
     .then((res) => res.json())
     .then((result) => {
-     console.log("res"+result)
      alert('Mail Sent!')
   })
     history.push({pathname:'/Validation',state: props})
