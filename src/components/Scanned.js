@@ -32,8 +32,6 @@ useEffect(()=>{
 fetch('https://helpsws.herokuapp.com/scanned', fetchs.getTrashId())
   .then((res) => res.json())
   .then((result) => {
-    console.log("in scanned here")
-    console.log(result)
     var x = true
     history.push({pathname: "/", state: x})
   })
@@ -42,7 +40,7 @@ return(
   <div >
   <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
   <CircularProgress color="inherit" />
-    <Typography style={{marginTop: '50px'}}>Chotto Matte Kudasai</Typography>
+    <Typography style={{marginTop: '50px'}}>Please wait while we （＞ω＜。）</Typography>
     
   </Backdrop>
 </div>
