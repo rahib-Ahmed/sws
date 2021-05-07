@@ -44,7 +44,7 @@ function Tabsbutton(props){
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
     const check = localStorage.getItem("check")
-    console.log(check)
+
     const handleChange = (event, newValue) => {
       
       setValue(newValue);
