@@ -5,23 +5,17 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import recycle from '../images/recycle.png'
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import CloseIcon from '@material-ui/icons/Close';
-import Button from '@material-ui/core/Button';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
+import * as fetchs from '../backend/fetch' 
 
 
+ 
 
 
 const styles = (theme) => ({
@@ -31,9 +25,9 @@ const styles = (theme) => ({
   },
   closeButton: {
     position: 'absolute',
-    top: 10,
-    right: -40,
-    color: theme.palette.grey[500],
+    top:1,
+    right: -53,
+    color: '#CE5310',
   },
 });
 
@@ -41,13 +35,13 @@ const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
+    <Typography className="modFont">{children}</Typography>
+    {onClose ? (
+      <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <CloseIcon />
+      </IconButton>
+    ) : null}
+  </MuiDialogTitle>
   );
 });
 
@@ -64,16 +58,38 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-
+ 
 
 
 export default function MenuAppBar() {
-
-
-
+  
+  const switchs = makeStyles((theme) => ({
+    toggle: {
+      '& .MuiSwitch-root' :{
+        color: '#CE5310',
+      },
+           '& .Mui-checked': {
+              color: '#CE5310',
+              
+          },
+          '& .MuiSwitch-track': {
+            color: '#CE5310',
+              backgroundColor:'#CE5310'
+          }, 
+          '& .MuiSwitch-thumb' : {
+            color: '#CE5310',
+          },
+          '& .MuiSwitch-input' : {
+            color: '#CE5310',
+          },
+        
+      },
+   })) 
   const name = localStorage.getItem("name")
   const [opens, setOpens] = React.useState(false);
-
+  const [toggle, setToggle] = React.useState(false)
+  const [sin, setSin] = React.useState(false)
+   const classes = switchs()
   const handleClickOpen = () => {
     setOpens(true);
   };
@@ -81,6 +97,18 @@ export default function MenuAppBar() {
     setOpens(false);
   };
   
+ const toggled = (event) => {
+    setToggle(event.target.checked)
+    if(event.target.checked === true) {
+      setSin(true)
+      fetch('https://helpsws.herokuapp.com/updateusertrack', fetchs.updateUserTrack("recycled"))
+      .then(res => res.json())
+      .then(ress => {
+        
+  })
+    }
+  
+}
 
 
 
@@ -101,16 +129,22 @@ export default function MenuAppBar() {
 
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={opens}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Recycle
+          <div className="modHead">
+          Doing your part
+          </div>
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-           Recycle here to get the achievements 
+            <div className="modFont">
+          The main aim of SWS2.0 is to help the planet by helping you keep track and make sustainable choices. Though we provide you with the tools 
+          to make these choices, your journey goes one step beyond. We believe recycling marks the end of the journey you started with us.
+          We give you this option to mark the completion of your journey and we'll help you keep a track of this as well.<br/> <em>Happy Recycling!</em>
+           </div> 
           </Typography>
         </DialogContent>
         <DialogActions>
-            <Typography>Recycle</Typography>
-            <Switch />
+            <div className="modHead">I recycled </div>
+            <Switch className={classes.toggle} disabled={sin}  onChange={toggled} checked={toggle} value={toggle}  />
         </DialogActions>
       </Dialog>
     </div>
